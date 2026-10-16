@@ -3,505 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ألف سلامة عليكي يا نونة ❤️</title>
+    <title>عالم منونتي &أجمل واحده في الدنيا ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
         body {
-            background: radial-gradient(circle at center, #2b0933, #0f0214);
-            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #1a0f14 0%, #3d1525 50%, #591632 100%);
             min-height: 100vh;
-            overflow-x: hidden;
+            color: #fce7ec;
         }
-        .screen {
-            display: none;
-            min-height: 100vh;
-            padding: 20px;
-            animation: fadeIn 0.5s ease-in-out;
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        .screen.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* Password Screen */
-        #login-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-        .login-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            border-radius: 30px;
-            padding: 40px 30px;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-        .login-card h1 {
-            color: #ff69b4;
-            margin-bottom: 15px;
-            font-size: 28px;
-            text-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
-        }
-        .login-card p {
-            color: #ffb6c1;
-            margin-bottom: 25px;
-            font-size: 15px;
-        }
-        .pass-input {
-            width: 100%;
-            padding: 16px;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 105, 180, 0.5);
-            background: rgba(0,0,0,0.4);
-            color: #fff;
-            text-align: center;
-            font-size: 22px;
-            margin-bottom: 20px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .pass-input:focus {
-            border-color: #ff1493;
-            box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
-        }
-        .btn {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
+        .active-tab {
+            background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
             color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            box-shadow: 0 10px 25px rgba(201, 24, 74, 0.4);
         }
-        .btn:active {
-            transform: scale(0.97);
-        }
-        .error-msg {
-            color: #ff4d4d;
-            margin-top: 15px;
-            font-size: 14px;
-            display: none;
-            font-weight: 600;
-        }
-
-        /* Navigation Bar */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(15, 2, 20, 0.85);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 12px 15px;
+        /* القلوب العائمة */
+        .heart-float {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 105, 180, 0.15);
-            overflow-x: auto;
+            color: rgba(255, 77, 109, 0.3);
+            animation: floatUp 7s linear infinite;
+            z-index: 0;
+            pointer-events: none;
         }
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            color: #ffb6c1;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: 0.3s;
-        }
-        .nav-btn.active, .nav-btn:hover {
-            background: linear-gradient(135deg, #ff69b4, #ff1493);
-            color: #fff;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
-        }
-
-        /* Main Container */
-        .main-container {
-            margin-top: 90px;
-            width: 100%;
-            max-width: 1300px;
-            padding: 15px;
-        }
-        .section-title {
-            text-align: center;
-            color: #ff69b4;
-            margin-bottom: 30px;
-            font-size: 32px;
-            font-weight: 900;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
-        }
-
-        /* Videos Grid */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
-        .video-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 105, 180, 0.2);
-            text-align: center;
-            padding: 15px;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
-        .video-card:hover {
-            transform: translateY(-5px);
-            border-color: #ff69b4;
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.3);
-        }
-        .video-thumb {
-            width: 100%;
-            height: 220px;
-            background: #000;
-            border-radius: 12px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .video-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-            transition: 0.3s;
-        }
-        .video-card:hover .video-thumb img {
-            transform: scale(1.05);
-        }
-        .play-icon {
-            position: absolute;
-            background: rgba(255, 0, 0, 0.85);
-            color: #fff;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 0 15px rgba(255,0,0,0.6);
-            transition: 0.3s;
-        }
-        .video-card:hover .play-icon {
-            transform: scale(1.15);
-            background: #ff0000;
-        }
-
-        /* Modal Player (Popup inside site) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-content {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            height: 700px;
-            max-height: 85vh;
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid #ff69b4;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
-        }
-        .modal-content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: none;
-            font-size: 22px;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 2010;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: 0.2s;
-        }
-        .close-modal:hover {
-            background: #ff0000;
-        }
-
-        /* Photos Grid */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            width: 100%;
-        }
-        .photo-card {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 240px;
-            border: 2px solid rgba(255, 105, 180, 0.3);
-            background: rgba(0,0,0,0.3);
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            transition: 0.3s;
-        }
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-        .photo-card:hover img {
-            transform: scale(1.12);
-        }
-        .photo-card:hover {
-            border-color: #ff69b4;
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.5);
-        }
-
-        /* Message Page */
-        .message-box {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 2px solid rgba(255, 105, 180, 0.4);
-            border-radius: 25px;
-            padding: 40px 30px;
-            max-width: 850px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            margin-bottom: 40px;
-        }
-        .message-box h2 {
-            color: #ff69b4;
-            margin-bottom: 25px;
-            font-size: 34px;
-            text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
-        }
-        .message-box p {
-            color: #fce4ec;
-            font-size: 19px;
-            line-height: 2.3;
-            margin-bottom: 25px;
-            text-align: justify;
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.6); opacity: 0; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-10vh) scale(1.3); opacity: 0; }
         }
     </style>
 </head>
-<body>
+<body class="relative overflow-x-hidden pb-20">
 
-    <!-- Password Screen -->
-    <div id="login-screen">
-        <div class="login-card">
-            <h1>🔒 لوحة نونة الخاصة</h1>
-            <p>أدخل كلمة المرور السرية لفتح العالم الجميل</p>
-            <input type="password" id="passInput" class="pass-input" placeholder="••••••••">
-            <button class="btn" onclick="checkPassword()">دخول الموقع ✨</button>
-            <div id="errorMsg" class="error-msg">كلمة المرور غير صحيحة، ركزي تاني!</div>
+    <!-- خلفية القلوب المتحركة -->
+    <div id="heartBg"></div>
+
+    <!-- 1. شاشة قفل كلمة السر -->
+    <div id="lockScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl p-4">
+        <div class="glass p-8 md:p-10 rounded-3xl shadow-2xl max-w-md w-full text-center border border-rose-500/30">
+            <div class="text-6xl mb-4 animate-bounce">💖</div>
+            <h2 class="text-2xl md:text-3xl font-black text-rose-400 mb-2">منطقة خاصة لـ منونتي وبس 🦋💖</h2>
+            <p class="text-sm text-rose-200/80 mb-6">اكتبي كلمة السر السرية اللي بيننا عشان تفتحي باب قلبي وعالمنا</p>
+            <input type="password" id="passInput" placeholder="اكتبي كلمة السر هنا..." class="w-full px-5 py-4 rounded-2xl border border-rose-500/40 focus:outline-none focus:ring-4 focus:ring-rose-500 text-center text-xl mb-4 bg-black/40 text-white placeholder-rose-300/40">
+            <button onclick="checkPassword()" class="w-full py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold rounded-2xl shadow-lg hover:opacity-95 transition text-lg">دخول لعالمنا 💕</button>
+            <p id="errorMsg" class="text-rose-400 text-sm mt-3 hidden font-semibold">كلمة السر مش مظبوطة يا روحي، جربي تاني!</p>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div id="app-content" style="display: none;">
-        <!-- Navbar -->
-        <div class="navbar">
-            <button class="nav-btn active" onclick="switchTab('videos')">فيديوهات نونة 🎥</button>
-            <button class="nav-btn" onclick="switchTab('photos')">ذكريات وصور نونة 📸</button>
-            <button class="nav-btn" onclick="switchTab('message')">   تعالي أقولك ي نونه💗🦋</button>
-        </div>
+    <!-- محتوى الموقع الأساسي (يظهر بعد كلمة السر) -->
+    <div id="mainContent" class="hidden relative z-10">
+        
+        <!-- الهيدر الرئيسي -->
+        <header class="pt-10 pb-6 text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-400 to-red-400 mb-2 drop-shadow">حكايتنا أنا ونونه ✨</h1>
+            <p class="text-rose-200 font-semibold text-base md:text-lg">عالمنا الخاص.. ذكرياتنا وأيامنا وكل لحظة حلوة سوا</p>
+            
+            <!-- أزرار التنقل بين الصفحات (Tabs) -->
+            <nav class="flex flex-wrap justify-center gap-2 md:gap-4 mt-8 max-w-4xl mx-auto px-2">
+                <button onclick="switchTab('home')" id="btn-home" class="active-tab px-5 py-3 rounded-2xl font-bold transition text-sm md:text-base">🏠 الرئيسية</button>
+                <button onclick="switchTab('memories')" id="btn-memories" class="glass px-5 py-3 rounded-2xl font-bold hover:bg-white/20 transition text-sm md:text-base text-rose-100">📸 ذكرياتنا ({photos.length})</button>
+                <button onclick="switchTab('counter')" id="btn-counter" class="glass px-5 py-3 rounded-2xl font-bold hover:bg-white/20 transition text-sm md:text-base text-rose-100">⏳ عداد أحلي أيام في حياتي
+                </button>
+                <button onclick="switchTab('jar')" id="btn-jar" class="glass px-5 py-3 rounded-2xl font-bold hover:bg-white/20 transition text-sm md:text-base text-rose-100">🫙 برطمان السعادة</button>
+                <button onclick="switchTab('letters')" id="btn-letters" class="glass px-5 py-3 rounded-2xl font-bold hover:bg-white/20 transition text-sm md:text-base text-rose-100">💌 رسائل القلب</button>
+            </nav>
+        </header>
 
-        <!-- 1. Videos -->
-        <div id="videos-screen" class="screen active main-container">
-            <h2 class="section-title">فيديوهات نونة الرائعة</h2>
-            <div class="video-grid" id="videoGrid"></div>
-        </div>
+        <main class="max-w-6xl mx-auto px-4 mt-6">
 
-        <!-- Video Modal Player -->
-        <div id="videoModal" class="modal">
-            <div class="modal-content">
-                <button class="close-modal" onclick="closeVideoModal()">×</button>
-                <div id="iframeContainer" style="width:100%; height:100%;"></div>
-            </div>
-        </div>
+            <!-- صفحة الرئيسية -->
+            <section id="tab-home" class="space-y-8">
+                <div class="glass p-8 md:p-12 rounded-3xl shadow-2xl text-center space-y-6 border border-rose-500/20">
+                    <div class="inline-block p-4 rounded-full bg-rose-500/20 text-5xl mb-2">🌹</div>
+                    <h2 class="text-3xl md:text-4xl font-black text-rose-300">أهلاً بملكة قلبي منونتي في عالمنا</h2>
+                    <p class="text-rose-100/90 text-lg leading-relaxed max-w-2xl mx-auto">
+                        الموقع ده معمول مخصوص عشان يجمع كل لحظة حلوة، وكل ضحكة ضحكناها، وكل حب كبير جوايا ليكي. اتنقلي براحتك بين الأقسام ي ماما 🦋💖
+                    </p>
+                    <div class="flex justify-center gap-4 pt-4">
+                        <button onclick="switchTab('memories')" class="px-8 py-3.5 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold rounded-2xl shadow-lg hover:scale-105 transition">اتفرجي على صورنا 📸</button>
+                        <button onclick="switchTab('counter')" class="px-8 py-3.5 glass hover:bg-white/20 text-rose-200 font-bold rounded-2xl transition">شوفي عداد الأيام ⏳</button>
+                    </div>
+                </div>
 
-        <!-- 2. Photos -->
-        <div id="photos-screen" class="screen main-container" style="display: none;">
-            <h2 class="section-title">أجمل صور وذكريات نونة</h2>
-            <div class="photo-grid" id="photoGrid"></div>
-        </div>
+                <!-- سكشن سريع مميز -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-3xl mb-2">📸</div>
+                        <h3 class="font-bold text-xl text-rose-300 mb-1">35 ذكريات  غالية</h3>
+                        <p class="text-sm text-rose-200/80"> أجمل صور في حياتي معاكي🦋💖</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-3xl mb-2">⏰</div>
+                        <h3 class="font-bold text-xl text-rose-300 mb-1">حب لا ينتهي</h3>
+                        <p class="text-sm text-rose-200/80" id="homeCounterText">بنعد دقيقة بدقيقة من يوم 10 مايو 2026</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center">
+                        <div class="text-3xl mb-2">💖</div>
+                        <h3 class="font-bold text-xl text-rose-300 mb-1">عشق خالص</h3>
+                        <p class="text-sm text-rose-200/80">أنتي كل حياتي ودنيتي يا منونتي</p>
+                    </div>
+                </div>
+            </section>
 
-        <!-- 3. Message -->
-        <div id="message-screen" class="screen main-container" style="display: none;">
-            <div class="message-box">
-                <h2>ألف مليون سلامة عليكي يا أجمل نونة في الدنيا! 🦋</h2>
-                <p>
-                    ألف مليون سلامه عليكي ي نونه إن شاء الله ي حببتي هتقومي بالسلامه وتبقي زي الفل وهترجعي أقوي وأحسن من الأول ب مليون مره وهتعملي كل الي نفسك فيه بإذن الله 
-                </p>
-                <p>
-                أنا لسه بحبك ي منه وهفضل احبك انتي الوحيده الي حبيتك بجد والله وهفضل أحبك والله العظيم ي منه ميشغلنيش اي حاجه تانيه في الدنيا غيرك انتي اي حاجه قولتهالك ليكي والله عمرها مكانت هتعود عليا بمنفعه ليا انا كلها منفعه ليكي وبعمل كدا علشان بحبك انتي جوهره ي منه اوعي في يوم تقارني نفسك ب حد أصلا ولا تشوفي حد احسن منك والله العظيم مفيش الكلام دا انتي حلوه وقمر وقلبك ابيض وزي الفل وأي غلط بتعمليه وهتعمليه ف أي حد ي منه بيغلط والله بس الشاطر الي بيعرف يرجع تاني اي واحده بتشوفيها تقولي احسن مني دا غلط والله انتي مفيش حد احسن ولا أجدع منك انتي علي فكره حلوه وجدعه ومريحه وزي القمر بس عبيطه ي منه بتفكري الي حواليكي عايزك عبده ليه او يمشي كلامه عليكي بس اي حد بينصحك حتي لو مش هتعملي بالنصيحه ف أسمعيها ي منه انا مش بتكلم علي اي نصيحه مني انا بقا كمان أنا بتكلم علي اي نصيحه في حياتك ي ماما اوعي تتكبري علي انك حتي تسمعيها وخدي اي نصيحه كدا ابقي مبسوطه ومتأكده ان الي قدامك بيقولك عليها مش علشان بيكرهك ولا انه يمشي كلامه عليكي بالعكس والله ي حببتي والله الي بينصحك بيبقا بيحبك وخايف عليكي اناي غاليه عندي اوي ي نونه والله مهما حصل وبحبك لسه لحد اللحظه دي انا مش عارف اقولك كدا تاني كتير بعد المشكله الأخيره ولا عارف اعمل معاكي نفس الي كنت بعمله علشان حسيت منك انك مش محتاجه لكدا خلاص ومش عايزه ف بقيت ساكت علشانك برده والله والويب سايت دا أنا عملته يعوضك عن الباقين الي فيهم حجات باظت متزعليش حقك عليا أني كنت وعدتك أني مش همسحهم ومسحتهم ولما رجعو كان فيهم حجات مش شغاله بس جت مني وقت زعل حقك عليا مش عايزك تبقي زعلانه ولا شايله مني في أي حاجه ي منه انا والله بحبك
-                </p>
-                <p>
-            انا هفضل جمبك بإذن الله ي نونه لحد ماتقومي بالسلامه كدا وهتبقي زي الفل مش عايز منك اي حاجه غير انك تخفي إن شاء الله وتبقي حلوه مفيش فيكي اي حاجه كدا وتروحي وتيجي براحتك من غير أي الم وهفضل جمبك وهساعدك ي منه.أنا معتش عايز حاجه منك غيرك انك تبقي بخير كدا وتفتكريني بالخير وأني كنت بحبك فعلا بجد وبخاف عليكي ومش بتمني ليكي اي حاجه وحشه وعمري ماكنت قاسي عليكي والله بالعكس انتي مشوفتيش مني غير كله خوف وحنيه والله عليكي ي منه ولسه برده والله خايف عليكي ونفسي بس مش قادر اتكلم تاني ترجعي منه الي عرفتها.لما كنت بكلمك وبقولك طب مانتي شطوره ونزلتي مغطيه شعرك اهو عادي وقولتيلي لا وورتيني نزلت ازاي والله العظيم انا زعلت جوايا اوي كنت حسيت اني هعيط قدامك انك عملتي في نفسك كدا تاني بس مقدرتش اقولك حاجه ي منه مقدرتش اتكلم معاكي وزعلي دا مش ليا دا زعل عليكي والله انك بتعملي في نفسك كدا انا فعلا حسيت ساعتها اني خدت خبطه جامده اوي علي دماغي من كتر الزعل عليكي ومش بقولك الكلام دا تاني علشان حاجه لا والله بس بقولك كدا علشان تحاولي انتي تاني مع نفسك ي منه وتراجعي نفسك مع نفسك ولو عوزتيني برده اقف جمبك تاني او أشجعك في أي حاجه من دي تعالي ليا وانا مش هتأخر عليكي ثانيه وهقف جمبك وهعمل كل حاجه في أيدي علشانك والله ساعتها اهم حاجه أنك تبقي كويسه ودلوقتي أنا هفضل واقف جمبك وأنتي تعبانه وهساعدك ي منه بجد مش كلام.أنا عارف ان بعد المشكله الي حصلت بينا ممكن مبقتيش زي الاول معايا بس ميشغلنيش بقا دلوقتي الي يشغلني انك تقومي بالسلامه بس وأي حاجه تانيه بعدها عادي. الف سلامة عليكي يا ست البنات 🦋💗
-                </p>
-            </div>
+            <!-- صفحة معرض الذكريات -->
+            <section id="tab-memories" class="hidden space-y-6">
+                <div class="glass p-6 md:p-8 rounded-3xl shadow-2xl">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-black text-rose-300 mb-2">📸 ذكرياتنا الحلوة مع بعض</h2>
+                        <p class="text-rose-200/80 text-sm">اضغطي على أي صورة عشان تكبر وتملى الشاشة وتعيشي جو اللحظة</p>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4" id="photoGrid">
+                        <!-- يتم تعبئة الصور ديناميكياً -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- صفحة عداد الحب -->
+            <section id="tab-counter" class="hidden space-y-6">
+                <div class="glass p-8 md:p-12 rounded-3xl shadow-2xl text-center space-y-8">
+                    <div>
+                        <h2 class="text-3xl font-black text-rose-300 mb-2"> عداد أيامنا مع بعض ي منونتي 🦋💖</h2>
+                        <p class="text-rose-200/80">من اول لحظه  بدأت فيها كل حاجه  <span class="text-rose-400 font-bold">10 مايو 2026</span> وحتى هذه اللحظة:</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div id="daysNum" class="text-4xl md:text-5xl font-black text-rose-400 mb-1">0</div>
+                            <div class="text-rose-200 text-sm font-semibold">يوم</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div id="hoursNum" class="text-4xl md:text-5xl font-black text-rose-400 mb-1">0</div>
+                            <div class="text-rose-200 text-sm font-semibold">ساعة</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div id="minsNum" class="text-4xl md:text-5xl font-black text-rose-400 mb-1">0</div>
+                            <div class="text-rose-200 text-sm font-semibold">دقيقة</div>
+                        </div>
+                        <div class="glass-card p-6 rounded-2xl">
+                            <div id="secsNum" class="text-4xl md:text-5xl font-black text-rose-400 mb-1">0</div>
+                            <div class="text-rose-200 text-sm font-semibold">ثانية</div>
+                        </div>
+                    </div>
+
+                    <p class="text-rose-200/90 italic text-lg pt-4">"وكل ثانية بتمر وأنا معاكي.. بحبك فيها أكتر من اللي قبلها يا نونه ❤️"</p>
+                </div>
+            </section>
+
+            <!-- صفحة برطمان السعادة -->
+            <section id="tab-jar" class="hidden space-y-6">
+                <div class="glass p-8 md:p-12 rounded-3xl shadow-2xl text-center max-w-2xl mx-auto space-y-6">
+                    <div class="text-6xl animate-pulse">🫙</div>
+                    <h2 class="text-3xl font-black text-rose-300">برطمان رسائل نونه السحري</h2>
+                    <p class="text-rose-200/80 text-sm">كل ما تحبي تقرئي حاجة تفرحك، اضغطي على الزرار واسحبي رسالة خاصة لعيونك:</p>
+                    <div id="jarMessage" class="p-6 bg-rose-950/40 rounded-2xl border border-rose-500/30 text-rose-200 font-semibold text-lg min-h-[100px] flex items-center justify-center">
+                        اضغطي على الزرار يامنونتي وشوفي رسالتك أنهارده 🦋
+                    </div>
+                    <button onclick="getRandomMessage()" class="px-8 py-3.5 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold rounded-2xl shadow-lg hover:scale-105 transition">اسحبي رسالة جديدة 💌</button>
+                </div>
+            </section>
+
+            <!-- صفحة رسائل القلب -->
+            <section id="tab-letters" class="hidden space-y-6">
+                <div class="glass p-8 md:p-12 rounded-3xl shadow-2xl space-y-8 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-black text-rose-300 mb-2">💌 رسالة من قلبي لقلبك يا نونه</h2>
+                        <p class="text-rose-200/80 text-sm">أنتي أحلي ماما في الدنيا كلها ربنا يخليكي ليا ي ماما  </p>
+                    </div>
+                    
+                    <div class="text-rose-100 leading-relaxed text-lg space-y-6 bg-black/30 p-8 rounded-3xl border border-rose-500/20">
+                        <p. أحلي وأجمل وأرق ماما في الدنيا كلها أنتي الحاجه الوحيده الي دخلت نورت حياتي  وبجد انتي حلوه أوي وزي القمر وتحفهه بقيت بحس بطعم أي حاجه معاكي أول مره أحب حد بجد وأبقا نفسي اخده في حضني كدا أول مره برده مبقاش زهقان من حد ونفسي فيه كل يوم وألمسه كل يوم بتبقي وحشاني وانا بكلمك ياريتك كنتي في حياتي من زمان ي أحلي حاجه في الدنياأنتي ست البناتكلهم  عايزك معايا علي طول مش عايز اسيبك لحظه 🦋💖.</p>
+                        <p>ضحكتك دي عندي بالدنيا وما فيها، وكل دقيقة بتعدي وأنا معاكي بحس إني ملكت الدنيا دي بحذافيرها. ربنا يديمك ليا نعمة ما تعوضش أبداً، وتفضلي منورة حياتي لحد آخر عمرنا 🦋💖.</p>
+                    </div>
+
+                    <div class="text-center space-y-4 pt-4">
+                        <p class="text-rose-300 font-bold text-sm">عاوزة تسمعي كلمتين كمان؟ اضغطي هنا:</p>
+                        <button onclick="getMoreFlirt()" class="px-8 py-3.5 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-bold rounded-2xl shadow-lg hover:scale-105 transition">كلمتين كمان لعيون نونه 🌹</button>
+                        <p id="flirtText" class="text-rose-200 font-semibold italic text-xl min-h-[50px] flex items-center justify-center pt-2"></p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center py-10 text-rose-300/80 font-semibold text-sm">
+         لأجل عيون نونه التحفه 💖🦋
+        </footer>
+    </div>
+
+    <!-- نافذة تكبير الصور (Modal) -->
+    <div id="imageModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer" onclick="closeModal()">
+        <div class="relative max-w-4xl max-h-[90vh]">
+            <img id="modalImg" src="" class="max-w-full max-h-[85vh] rounded-3xl shadow-2xl border-2 border-rose-500/40 object-contain">
+            <p class="text-center text-rose-300 mt-3 text-sm">اضغطي في أي مكان للإغلاق ❌</p>
         </div>
     </div>
 
     <script>
+        // مصفوفة الـ 35 صورة الخاصة بك
+        const photos = [
+            "https://i.ibb.co/CK8SWSrF/image.png", "https://i.ibb.co/BVXHRsY0/image.png", "https://i.ibb.co/d4C53cp7/image.png", "https://i.ibb.co/DPwTSm44/image.png",
+            "https://i.ibb.co/LdFNb6vX/image.png", "https://i.ibb.co/8gqcrTdg/image.png", "https://i.ibb.co/9m8PpS7B/image.png", "https://i.ibb.co/8gHpBGqg/image.png",
+            "https://i.ibb.co/WdmCgK6/image.png", "https://i.ibb.co/hFdJvBX4/image.png", "https://i.ibb.co/600N5XRr/image.png", "https://i.ibb.co/b5jrhjGv/image.png",
+            "https://i.ibb.co/zWgn5Bmy/image.png", "https://i.ibb.co/LdvKdC4w/image.png", "https://i.ibb.co/0jrjFc1Z/image.png", "https://i.ibb.co/7J32ZJWc/image.png",
+            "https://i.ibb.co/Z6X4N7Z3/image.png", "https://i.ibb.co/7J0QvgD4/image.png", "https://i.ibb.co/S70yXMGz/image.png", "https://i.ibb.co/Qvj8tywg/image.png",
+            "https://i.ibb.co/JWznYRwY/image.png", "https://i.ibb.co/jZjc5r3C/image.png", "https://i.ibb.co/YFcRhS1M/image.png", "https://i.ibb.co/F9zf6c4/image.png",
+            "https://i.ibb.co/tT6Wjcn8/image.png", "https://i.ibb.co/Q71hkHtj/image.png", "https://i.ibb.co/pjLmLXsT/image.png", "https://i.ibb.co/8DmCd36V/image.png",
+            "https://i.ibb.co/pBnGSZ74/image.png", "https://i.ibb.co/zWVTqqsC/image.png", "https://i.ibb.co/hFV3Ywbp/image.png", "https://i.ibb.co/Lhzh4HKF/image.png",
+            "https://i.ibb.co/fYYZxHVM/image.png", "https://i.ibb.co/cc5pByGW/image.png", "https://i.ibb.co/wNp5QnmF/image.png"
+        ];
+
+        // التحقق من كلمة السر (10-5-2026)
         function checkPassword() {
-            const pass = document.getElementById('passInput').value;
-            if (pass === "10-5-2026") {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('app-content').style.display = 'block';
-                loadContent();
+            const input = document.getElementById('passInput').value.trim();
+            const error = document.getElementById('errorMsg');
+            if (input === "10-5-2026") {
+                document.getElementById('lockScreen').style.display = 'none';
+                document.getElementById('mainContent').classList.remove('hidden');
+                initGallery();
+                startLoveCounter();
             } else {
-                document.getElementById('errorMsg').style.display = 'block';
+                error.classList.remove('hidden');
             }
         }
 
-        function switchTab(tabName) {
-            document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-
-            if (tabName === 'videos') {
-                document.getElementById('videos-screen').style.display = 'flex';
-                event.target.classList.add('active');
-            } else if (tabName === 'photos') {
-                document.getElementById('photos-screen').style.display = 'flex';
-                event.target.classList.add('active');
-            } else if (tabName === 'message') {
-                document.getElementById('message-screen').style.display = 'flex';
-                event.target.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Open and Play Video inside Modal
-        function openVideoModal(id) {
-            const modal = document.getElementById('videoModal');
-            const container = document.getElementById('iframeContainer');
-            container.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-            modal.style.display = 'flex';
-        }
-
-        // Close Modal and Stop Video
-        function closeVideoModal() {
-            const modal = document.getElementById('videoModal');
-            const container = document.getElementById('iframeContainer');
-            container.innerHTML = '';
-            modal.style.display = 'none';
-        }
-
-        // Close modal when clicking outside content
-        window.onclick = function(event) {
-            const modal = document.getElementById('videoModal');
-            if (event.target == modal) {
-                closeVideoModal();
-            }
-        }
-
-        const videoLinks = [
-            "x7XqxSDkGas", "9bQZevrpTs4", "JecUDSOQ-6I", "lLPXlt3nVGI", "NaKsh4HIIlk",
-            "lfCkrtyLXfY", "hRR1-N-Dzu8", "TjToNlnINEE", "2YCMhQ7ynkc", "14AIE2erJJg",
-            "uzz90fWt4-o", "iJOUYqCD-IU", "TX1E8S8p0ew", "SsG6BEGQJp8", "VG7anK_iSDc",
-            "WQbhwxBSicM", "X29xrOHbXaI", "QlIShLuf1tY", "r_FQ3EYvwQQ", "IXXvhqPCdok",
-            "5OK2d070uYc", "RUNqV6FvRXE", "J8i2rW9ba7o", "zxGuYOZUnic", "QkckMmwtCzU",
-            "-Ll8AFk-ZCo", "gFWtx-OfSiQ", "pvMpfyuS9Dg", "1QnIM8J9ncs", "l2Iw7PgbUmY",
-            "eKSwRWHtxUc", "GU3pHrXbNYw", "wranpAiNJjE", "OI8fR8-BUE0"
-        ];
-
-        const photoLinks = [
-            "https://i.postimg.cc/njKTznnt/image.jpg", "https://i.postimg.cc/wyY0g182/image.jpg", "https://i.postimg.cc/8Jdw5TNt/image.jpg", "https://i.postimg.cc/CBCJ1wSX/image.jpg", "https://i.postimg.cc/8JgtN7Qy/image.jpg",
-            "https://i.postimg.cc/k6Pfq23x/image.jpg", "https://i.postimg.cc/9RHJCD54/image.jpg", "https://i.postimg.cc/wy5Fv9gQ/image.jpg", "https://i.postimg.cc/njf0pXb4/image.jpg", "https://i.postimg.cc/ygCvsD4T/image.jpg",
-            "https://i.postimg.cc/r02QMDXm/image.jpg", "https://i.postimg.cc/Ppn2TCsC/image.jpg", "https://i.postimg.cc/xJVtnXDp/image.jpg", "https://i.postimg.cc/TLjQwTfS/image.jpg", "https://i.postimg.cc/S2bDknF2/image.jpg",
-            "https://i.postimg.cc/WFmS3sTS/image.jpg", "https://i.postimg.cc/vg7XBGbL/image.jpg", "https://i.postimg.cc/62Vz3BBp/image.jpg", "https://i.postimg.cc/YGBbMvKm/image.jpg", "https://i.postimg.cc/XG6Q4rSB/image.jpg",
-            "https://i.postimg.cc/WFmS3sTn/image.jpg", "https://i.postimg.cc/njKTznp2/image.jpg", "https://i.postimg.cc/Hc1BdrDM/image.jpg", "https://i.postimg.cc/0M1cPzRD/image.jpg", "https://i.postimg.cc/CBCJ1wwp/image.jpg",
-            "https://i.postimg.cc/9RP1Mcch/image.jpg", "https://i.postimg.cc/Wq28qx42/image.jpg", "https://i.postimg.cc/yghnd771/image.jpg", "https://i.postimg.cc/q6kw6W74/image.jpg", "https://i.postimg.cc/wR62RnB8/image.jpg",
-            "https://i.postimg.cc/CnF7n9Kh/image.jpg", "https://i.postimg.cc/hQSsQNGK/image.jpg", "https://i.postimg.cc/SYydYHKs/image.jpg", "https://i.postimg.cc/GTcKT6pm/image.jpg", "https://i.postimg.cc/MfW5fgGf/image.jpg",
-            "https://i.postimg.cc/D4264Rzf/image.jpg", "https://i.postimg.cc/fSwCS1bY/image.jpg", "https://i.postimg.cc/649c4FQ5/image.jpg", "https://i.postimg.cc/4HJPHj39/image.jpg", "https://i.postimg.cc/QKXmKvMB/image.jpg",
-            "https://i.postimg.cc/s1ywLG4b/image.jpg", "https://i.postimg.cc/s1cwCfnM/image.jpg", "https://i.postimg.cc/QHYmV4Zd/image.jpg", "https://i.postimg.cc/JGzKrwgp/image.jpg", "https://i.postimg.cc/LhRNWgVK/image.jpg",
-            "https://i.postimg.cc/3W7nq0ZQ/image.jpg", "https://i.postimg.cc/MXDdJZsD/image.jpg", "https://i.postimg.cc/1f3MmxTb/image.jpg", "https://i.postimg.cc/qgLjHBmy/image.jpg", "https://i.postimg.cc/qzDwgbHf/image.jpg",
-            "https://i.postimg.cc/dLN6DHcQ/image.jpg", "https://i.postimg.cc/w7jFqKZH/image.jpg", "https://i.postimg.cc/K1d5D1zS/image.jpg", "https://i.postimg.cc/rDv9NDmM/image.jpg", "https://i.postimg.cc/4Yr1QYdg/image.jpg",
-            "https://i.postimg.cc/WdDnZGs7/image.jpg"
-        ];
-
-        function loadContent() {
-            // Load Videos with In-site Modal Play
-            const vGrid = document.getElementById('videoGrid');
-            videoLinks.forEach((id, index) => {
-                vGrid.innerHTML += `
-                    <div class="video-card" onclick="openVideoModal('${id}')">
-                        <p style="margin-bottom: 10px; font-weight: bold; color: #ffb6c1;">فيديو رقم ${index + 1}</p>
-                        <div class="video-thumb">
-                            <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="فيديو ${index + 1}" loading="lazy">
-                            <div class="play-icon">▶</div>
-                        </div>
-                        <span style="display:block; margin-top:10px; color:#ff69b4; font-size:13px; font-weight:700;">اضغط للمشاهدة هنا 🎬</span>
-                    </div>
-                `;
+        // نظام التنقل بين التبويبات (Tabs)
+        function switchTab(tabId) {
+            const tabs = ['home', 'memories', 'counter', 'jar', 'letters'];
+            tabs.forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                const btn = document.getElementById(`btn-${t}`);
+                if(btn) btn.className = "glass px-5 py-3 rounded-2xl font-bold hover:bg-white/20 transition text-sm md:text-base text-rose-100";
             });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            if(activeBtn) activeBtn.className = "active-tab px-5 py-3 rounded-2xl font-bold transition text-sm md:text-base";
+        }
 
-            // Load Photos safely
-            const pGrid = document.getElementById('photoGrid');
-            photoLinks.forEach((link, index) => {
-                pGrid.innerHTML += `
-                    <div class="photo-card">
-                        <img src="${link}" alt="صورة نونة ${index + 1}" loading="lazy">
-                    </div>
+        // بناء معرض الصور مع حماية ضد أي خطأ في التحميل
+        function initGallery() {
+            const grid = document.getElementById('photoGrid');
+            photos.forEach((url, index) => {
+                const div = document.createElement('div');
+                div.className = "relative overflow-hidden rounded-2xl shadow-xl border border-rose-500/20 aspect-square bg-rose-950/40 cursor-pointer group";
+                div.innerHTML = `
+                    <img src="${url}" alt="صورة ذكراى ${index + 1}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300&q=80';">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold text-sm">🔍 تكبير الصورة</div>
                 `;
+                div.onclick = () => openModal(url);
+                grid.appendChild(div);
             });
         }
+
+        function openModal(url) {
+            document.getElementById('modalImg').src = url;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+
+        // عداد الأيام الدقيق (من 10 مايو 2026 لحد اللحظة دي)
+        function startLoveCounter() {
+            const startDate = new Date('2026-05-10T00:00:00');
+
+            function update() {
+                const now = new Date();
+                const diff = now - startDate;
+
+                if(diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const mins = Math.floor((diff / 1000 / 60) % 60);
+                    const secs = Math.floor((diff / 1000) % 60);
+
+                    document.getElementById('daysNum').innerText = days;
+                    document.getElementById('hoursNum').innerText = hours;
+                    document.getElementById('minsNum').innerText = mins;
+                    document.getElementById('secsNum').innerText = secs;
+                    
+                    document.getElementById('homeCounterText').innerText = `أكتر من ${days} يوم حب وسعادة من 10 مايو 2026`;
+                }
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // برطمان السعادة
+        const jarMessages = [
+            "أنتِ ألطف وأجمل صدفة حصلت في عمري كله يا ماما 💖",
+            "ضحكتك دي قادرة تنور أي ضلمه  يوم عدى عليا 🦋",
+            "مهما عدي الوقت، حبك في قلبي بيزيد ومش بيقل أبداً 💖",
+            "بحب تفاصيلك وكل كلمة بتقوليها، ربنا ما يحرمني منك أبداً 🦋",
+            "أنتِ مش بس حبيبتي، أنتِ بنتي ووطني وكل دنيتي وأمي 💖",
+            "وجودك جنبي بيخلي الحياة أحلى ألف مرة يا ست البنات 🦋"
+        ];
+        function getRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * jarMessages.length);
+            document.getElementById('jarMessage').innerText = jarMessages[randomIndex];
+        }
+
+        // مولد الغزل المصري
+        const flirts = [
+            "يا بنتي حرام عليكي، جمالك ده قانوناً المفروض يتمنع! 🦋",
+            "أنا عيوني اتعودت تشوفك انتي وبس، والباقي بالنسبة لي ولا أي حاجه في حلاوتك وجمالك وطعامتك 💖",
+            "لو الجمال لغة، يبقا أنتي القاموس كله يا منونتي 🦋",
+            "ي واخد قلبي وناسيني م تقلع وتوريني  😂💖",
+            "أنتي البطل والحته الطريه الحلوه بتاعتي انا بس كنت فين ي خشب أيام م كنا مسامير أي ي لحمه مش هتدخلي المفرمه 😂 💖"
+        ];
+        function getMoreFlirt() {
+            const randomIndex = Math.floor(Math.random() * flirts.length);
+            document.getElementById('flirtText').innerText = flirts[randomIndex];
+        }
+
+        // إنشاء قلوب عائمة في الخلفية
+        const heartBg = document.getElementById('heartBg');
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float text-xl md:text-2xl';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+            heartBg.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }, 350);
     </script>
 </body>
 </html>
+
 
